@@ -32,6 +32,7 @@ import javafx.util.Duration;
  * Music: http://www.bensound.com/royalty-free-music
  * http://www.audiocheck.net/testtones_sinesweep20-20k.php
  * http://stackoverflow.com/questions/11994366/how-to-reference-primarystage
+ * Altered by kayser
  */
 public class PlayerController implements Initializable {
     
@@ -216,6 +217,22 @@ public class PlayerController implements Initializable {
     private void handleStop(ActionEvent event) {
         if (mediaPlayer != null) {
            mediaPlayer.stop(); 
+        }
+    }
+    
+    @FXML
+    private void handleSliderClick(Event event){
+        if(mediaPlayer != null){
+            mediaPlayer.pause();
+        }
+    }
+    
+    @FXML
+    private void handleSliderMove(Event event){
+        if(mediaPlayer != null){
+            mediaPlayer.seek(new Duration(timeSlider.getValue()));
+            currentVisualizer.start(numBands, vizPane);
+            mediaPlayer.play();
         }
     }
 }
